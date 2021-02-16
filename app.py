@@ -121,7 +121,7 @@ def index():
                 response = [
                     {
                         "face_detect":None,
-                        "result"     :"not detected any face"
+                        "result"     :"Not detected any face"
                     }
                 ]
                 return render_template('notdetected.html', response=response, filename=filename)
@@ -163,7 +163,7 @@ def imageurl():
         response = [
             {
                 "face_detect":None,
-                "result"     :"not detected any face"
+                "result"     :"Not detected any face"
             }
         ]
 

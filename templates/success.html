@@ -24,7 +24,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">{{response[0]['result']}}</h5>
                     <p class="card-text">{{response[0]['mood_message']}}</p>
-                    <a href="#" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a>
+                    <a href="#suggestions" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a>
 
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">{{response[0]['result']}}</h5>
                     <p class="card-text">{{response[0]['mood_message']}}</p>
-                    <a href="#" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a>
+                    <a href="#suggestions" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a>
 
                 </div>
             </div>
@@ -50,11 +50,19 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">{{response[0]['result']}}</h5>
                     <p class="card-text">{{response[0]['mood_message']}}</p>
-                    <a href="#" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a>
+                    <button data-target="#suggestions" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</button>
 
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="suggestions">
+    <div class="container">
+        {{response[0]['music']}}
+        {{response[0]['activities']}}
+    </div>
+</div>
+
 {% endblock %}
