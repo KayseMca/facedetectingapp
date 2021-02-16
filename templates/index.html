@@ -59,6 +59,16 @@
 
         }
 
+        .banner{
+            width: 100%;
+            height:100v;
+            /* background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75),url(../images/background.jpeg)); */
+            background-size: cover;
+            background-color: #FBAB7E;
+            /* background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%); */
+            background-position: center;
+            background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+        }
         
         .btn-grad {background-image: linear-gradient(to right, #2b5876 0%, #4e4376  51%, #2b5876  100%)}
          .btn-grad {
@@ -71,7 +81,7 @@
             color: white;            
             box-shadow: 0 0 20px #eee;
             border-radius: 10px;
-            display: block;
+            display: inline-flex;
           }
 
           .btn-grad:hover {
@@ -92,20 +102,20 @@
             }
     </style>
 
-    <div class>
+    <div class="banner">
         <div class="animation-area">
             <title>Upload new File</title>
 
             <div style="display:flex;flex-direction:column; align-items:center;
             justify-content:center;
             text-align:center;">
-              <div class="animation-area" style="height: 30vh;display:flex;flex-direction:column; align-items:center;
+              <div class="animation-area" style="height: 45vh;display:flex;flex-direction:column; align-items:center;
               justify-content:center;text-align:center;">
             <h3 style="color:#0A043C;">Upload Image from your System</h3>
             <div class="center">
                 <form action=/predict method=post enctype=multipart/form-data>
-                    <input type=file name=file class=button>
-                    <input type=submit value=Upload class=button>
+                    <input type=file name=file class=btn-grad>
+                    <input type=submit value=Upload class=btn-grad>
                 </form>
             </div>
             </div>
@@ -114,7 +124,7 @@
             <div style="display:flex;flex-direction:column; align-items:center;
             justify-content:center;
             text-align:center;">
-              <div class="animation-area" style="height: 30vh;display:flex;flex-direction:column; align-items:center;
+              <div class="animation-area" style="height: 40vh;display:flex;flex-direction:column; align-items:center;
               justify-content:center;text-align:center;color:#FFE3DE;">
             <h3 style="color:black">pass image url </h3>
 
@@ -122,7 +132,7 @@
                 <form class="form-inline" style="display: inline-flex;" action=/imageurl method=post enctype=multipart/form-data>
                     <div class="form-group mb-2">
                         <input type=url  class=" form-control btn-grad" placeholder="image url" name=url>
-                        <input type=submit class=" button" value="Send Url">
+                        <input type=submit class=" btn-grad" value="Send Url">
                     </div>
                     
                 </form>

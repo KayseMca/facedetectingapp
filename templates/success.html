@@ -60,13 +60,23 @@
 
 <div id="suggestions">
     <div class="container">
-        <button class="btn-btn-primary">
-            <a href="{{response[0]['music']}}">try this music</a>
-        </button>
-       
-        <h5>
-            {{response[0]['activities']}}
-        </h5>
+        <h5>Suggestions</h5>
+        <ul>
+            <li>
+                <button class="btn btn-primary">
+                    <a href="{{response[0]['music']}}"
+                    style="text-decoration: none; color:white"
+                    >try this music</a>
+                </button>
+            </li>
+            <li><h6>
+                {{response[0]['activities']}}
+            </h6>
+        </li>
+        </ul>
+        
+
+        
         
     </div>
 </div>

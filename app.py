@@ -65,13 +65,13 @@ mood = [
     ]
 acctivities = [
     {
-        "Happy":'• Try out some dance moves',
+        "Happy":'Try out some dance moves',
         "Sad":'• Write in a journal',
-        "Disgust":'• Listen soothing music',
-        "Neutral":'• Watch your favourite movie',
-        "Fear":'• Get a good sleep',
-        "Angry":'• Do meditation',
-        "Surprise":'• Give yourself a treat'
+        "Disgust":'Listen soothing music',
+        "Neutral":' Watch your favourite movie',
+        "Fear":' Get a good sleep',
+        "Angry":' Do meditation',
+        "Surprise":' Give yourself a treat'
         },
 ]
 response_data = [
