@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="/static/style/style.css" rel="stylesheet">
+    <!-- <link href="/static/style/home.css" rel="stylesheet"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood App</title>
+    <style>
+        a {
+            display: flex;
+        }
+        .banner{
+            width: 100%;
+            height:100v;
+            background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75),url(../static/images/background.jpeg));
+            background-size: cover;
+            background-position: center;
+}
+    </style>
+</head>
+
+<body>
+    <img src="/static/images/background.jpeg" width="0" height="0" alt="">
+    <div class="red"></div>
+    <div class="banner">
+        <!-- Image and text -->
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img class='logo' src="/static/mood.svg" width="35" height="35" class="d-inline-block align-top" />
+                    <h2 style="margin: 5px;">Mood App</h2>
+                </a>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>

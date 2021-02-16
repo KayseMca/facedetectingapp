@@ -1,11 +1,12 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, url_for, redirect
 from werkzeug.utils import secure_filename
+from urllib.request import Request, urlopen
 
 import cv2
 import sys
 
-import tensorflow as tf
+# import tensorflow as tf
 # from module.load import load_model
 import numpy as np
 # import matplotlib
@@ -51,7 +52,17 @@ music = [
         "Surprise":'https://brightside.me/wonder-curiosities/20-times-ordinary-things-surprised-us-when-we-least-expected-it-735510/'
     },
 ]
-
+mood = [
+    {
+        "Happy":"success",
+        "Angry":"danger",
+        "Fear":"warning",
+        "Neutral":"success",
+        "Surprise":"success",
+        "Disgust":"warning",
+        "Sad":"info"
+    }
+    ]
 acctivities = [
     {
         "Happy":'• Try out some dance moves',
@@ -70,60 +81,110 @@ response_data = [
         "result":None,
         "mood_message":None,
         "music":None,
-        "activities":None
+        "activities":None,
+        "mood":"primary"
     }
 ]
 
-app = Flask(__name__)
+# flask app init
+
+app = Flask(__name__, static_url_path='/static')
 app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+@app.route('/', methods=['GET','POST'])
+def home():
+    """ Manual Uploading of Images via URL or Upload """
+
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-
         if 'file' not in request.files:
             response[0]['result'] = 'no image'
+            return redirect(request.url)
         # img = request.files['file']
+
         img = request.files['file']
         if img.filename == '':
             response[0]['result'] = 'no image'
+            return redirect(request.url)
         
         if img and allowed_file(img.filename):
             filename = secure_filename(img.filename)
-            img.save(os.path.join(app.config['UPLOAD_FOLDER'], 'file.png'))
+            img.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             # predicting 
-            data = facecrop()
-            if len(data)>1: 
-                loading, circle, pred = data[0],data[1],data[2]
-
-                response = response_data
-                response[0]['loading'] = loading
-                response[0]['face_detect'] = circle
-                response[0]['result'] = pred
-                response[0]['music'] = music[0][pred]
-                response[0]['mood_message'] = mood_message[0][pred]
-                response[0]['activities'] = acctivities[0][pred]
-            else:
+            data = facecrop(filename)
+            if len(data)==1: 
                 response = [
                     {
                         "face_detect":None,
                         "result"     :"not detected any face"
                     }
                 ]
-                return jsonify(response)
-        
-        
-        # returning predicted data as response    
-    else:
-        response[0]['result'] = "not detected any face"
-        return jsonify(response)
-        
-    return jsonify(response)
+                return render_template('notdetected.html')
+
+
+            loading, circle, pred = data[0],data[1],data[2]
+            response = response_data
+            response[0]['loading'] = loading
+            response[0]['face_detect'] = circle
+            response[0]['result'] = pred
+            response[0]['music'] = music[0][pred]
+            response[0]['mood_message'] = mood_message[0][pred]
+            response[0]['activities'] = acctivities[0][pred]
+            response[0]['mood'] = mood[0][pred]
+            print(response)
+    return render_template('success.html', response=response, filename=filename)
+
+@app.route('/imageurl', methods=['POST'])
+def imageurl():
+    """ Fetches Image from URL Provided, does Emotion Analysis & renders."""
+
+    # Fetch the Image from the Provided URL
+    url = request.form['url']
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    print("############url")
+    print(url)
+    print(req)
+    if url=='':
+        return redirect(request.url)
+
+    # Reading, Encoding and Saving it to the static Folder
+    webpage = urlopen(req).read()
+    print(webpage)
+    arr = np.asarray(bytearray(webpage), dtype=np.uint8)
+    img = cv2.imdecode(arr, -1)
+    path = "static/uploads/"
+    cv2.imwrite(path + "urlimage.jpg", img)
+
+    data = facecrop("urlimage.jpg")
+    if len(data)==1: 
+        response = [
+            {
+                "face_detect":None,
+                "result"     :"not detected any face"
+            }
+        ]
+
+        return render_template('notdetected.html')
+
+    loading, circle, pred = data[0],data[1],data[2]
+    response = response_data
+    response[0]['loading'] = loading
+    response[0]['face_detect'] = circle
+    response[0]['result'] = pred
+    response[0]['music'] = music[0][pred]
+    response[0]['mood_message'] = mood_message[0][pred]
+    response[0]['activities'] = acctivities[0][pred]
+    response[0]['mood'] = mood[0][pred]
+    print(response)
+    return render_template('success.html', response=response, filename="urlimage.jpg")
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8000))
-    app.run(host='0.0.0.0',port= port, debug=True)
+    app.run(port= port, debug=True)
     

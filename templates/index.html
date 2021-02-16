@@ -1,0 +1,111 @@
+
+{%extends "base.html" %} 
+{%block content%} 
+
+<div>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color:#0A043C;
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(111, 0, 255)
+        }
+
+
+        h3 {
+            text-align: center;
+            color: white;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        div {
+            text-align: center;
+
+        }
+
+        .button {
+            background-color: #03506F;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            }
+            li {
+                float: left;
+            }
+    </style>
+
+    <div class="banner-text">
+        <div class="animation-area">
+            <title>Upload new File</title>
+
+            <div style="display:flex;flex-direction:column; align-items:center;
+            justify-content:center;
+            text-align:center;">
+              <div class="animation-area" style="height: 30vh;display:flex;flex-direction:column; align-items:center;
+              justify-content:center;text-align:center;">
+            <h3 style="color:#0A043C;">Upload Image from your System</h3>
+            <div class="center">
+                <form action=/predict method=post enctype=multipart/form-data>
+                    <input type=file name=file class=button>
+                    <input type=submit value=Upload class=button>
+                </form>
+            </div>
+            </div>
+            </div></div>
+
+            <div style="display:flex;flex-direction:column; align-items:center;
+            justify-content:center;
+            text-align:center;">
+              <div class="animation-area" style="height: 30vh;display:flex;flex-direction:column; align-items:center;
+              justify-content:center;text-align:center;color:#FFE3DE;">
+            <h3 style="color:black">pass image url </h3>
+
+            <div >
+                <form class="form-inline" style="display: inline-flex;" action=/imageurl method=post enctype=multipart/form-data>
+                    <div class="form-group mb-2">
+                        <input type=url  class=" form-control button" placeholder="image url" name=url>
+                        <input type=submit class=" button">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}

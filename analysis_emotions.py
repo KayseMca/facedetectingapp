@@ -9,14 +9,17 @@ import tensorflow as tf
 file_dir = os.path.dirname(__file__)
 sys.path.append(file_dir)
 
-def facecrop():  
+def facecrop(filename):  
     EMOTIONS_LIST = ["Angry", "Disgust",
                      "Fear", "Happy",
                      "Neutral", "Sad",
                      "Surprise"]
         
     # file_data = image.read()
-    path = file_dir+'/static/uploads/file.png'
+    print("herer#########")
+    # path = file_dir+'/static/uploads/'+filename
+    path = 'static/uploads/'+str(filename)
+    print(path)
     # facedata = "haarcascade_frontalface_default.xml"
     facedata = file_dir+'/haarcascade_frontalface_default.xml'
     # cascade = cv2.CascadeClassifier(cv2.data.haarcascades +facedata)
@@ -48,7 +51,7 @@ def facecrop():
 
         sub_face = gray_frame[y:y+h, x:x+w]        
         sub_face = cv2.resize(sub_face,(48,48))
-        cv2.imwrite(file_dir+'/static/uploads/cropped.jpg', sub_face)
+        cv2.imwrite('static/uploads/cropped'+str(filename), sub_face)
         cv2.waitKey(0)
         
         # saving circled face
@@ -61,7 +64,7 @@ def facecrop():
         # Drawing the Circle on the Image
         # cv2.circle(img, (xc, yc), radius, (0, 255, 0))
         # path = file_dir+"/static/uploads/" + str(img)
-        cv2.imwrite(file_dir+'/static/uploads/cropped2.jpg', img)
+        cv2.imwrite('static/uploads/detected'+str(filename), img)
         cv2.waitKey(0)
         
 
@@ -97,7 +100,7 @@ def facecrop():
             plt.ylabel('Probability')
             plt.title('Facial Expression Recognation')
             # Saving the Bar Plot
-            path = file_dir+"/static/uploads/"
-            plt.savefig("graph.png")
+            path = file_dir+"/static/uploads/graph"+str(filename)
+            plt.savefig(path)
 
             return loading,circle,pred
