@@ -1,83 +1,23 @@
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
-    <link href="static/style.css"" rel=" stylesheet">
-    <style>
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-
-        }
-
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-
-        h1 {
-            text-align: center;
-            color: white
-        }
-
-        h3 {
-            text-align: center;
-            color: white;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 5px;
-        }
-
-        /* Clearfix (clear floats) */
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="banner-text">
-        <div class="animation-area">
-            
-            <div style="display:flex;flex-direction:column; align-items:center;
-            justify-content:center;
-            text-align:center;">
-              <div class="animation-area" style="height: 100vh;display:flex;flex-direction:column; align-items:center;
-              justify-content:center;text-align:center;color:#FFE3DE;background-color:#0A043C">
-            <h1> Sorry. We are not able to make a prediction with this image </h1>
-            <h3 style="padding-top:20px;"> Please try capturing another image</h3>
-
-            <div class="col-md-4">
-                <div class="card shadow" style="width: 28rem;">
-                    <div >
-                        <img class="card-img-top" src="/static/uploads/{{filename}}" alt="Card image cap">
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{response[0]['result']}}</h5>
-                        <p class="card-text">{{response[0]['mood_message']}}</p>
-                        <!-- <a href="#" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a> -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div style="text-align: center;">
+        <h1> cant able to detect and predict this image </h1>
+    <h5 style="padding-top:20px;"> Please try capturing another image</h5>
+    </div>
     
-                    </div>
-                </div>
+    <div class="col-md-4" style="text-align: center;">
+        <div class="card shadow" style="width: 30rem;">
+            <div>
+                <img class="card-img-top" src="/static/uploads/{{filename}}" alt="Card image cap">
             </div>
+            <div class="card-body text-center">
+                <h5 class="card-title">{{response[0]['result']}}</h5>
+                <p class="card-text">{{response[0]['face_detect']}}</p>
+                <!-- <a href="#" class="btn btn-{{response[0]['mood']}}" style="text-align: center;">Suggestions</a> -->
+
+            </div>
+        </div>
     </div>
 </div>
-
-    </div>
-</body>
-
-</html>
+{% endblock %}

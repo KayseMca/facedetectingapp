@@ -124,7 +124,7 @@ def index():
                         "result"     :"not detected any face"
                     }
                 ]
-                return render_template('notdetected.html')
+                return render_template('notdetected.html', response=response, filename=filename)
 
 
             loading, circle, pred = data[0],data[1],data[2]
@@ -167,7 +167,7 @@ def imageurl():
             }
         ]
 
-        return render_template('notdetected.html')
+        return render_template('notdetected.html', response=response, filename="urlimage.png")
 
     loading, circle, pred = data[0],data[1],data[2]
     response = response_data
