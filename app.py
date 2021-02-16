@@ -126,7 +126,6 @@ def index():
                 ]
                 return render_template('notdetected.html', response=response, filename=filename)
 
-
             loading, circle, pred = data[0],data[1],data[2]
             response = response_data
             response[0]['loading'] = loading
