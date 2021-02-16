@@ -144,13 +144,11 @@ def imageurl():
     """ Fetches Image from URL Provided, does Emotion Analysis & renders."""
 
     # Fetch the Image from the Provided URL
+    if request.form['url']=='':
+        return redirect("/")
     url = request.form['url']
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    print("############url")
-    print(url)
-    print(req)
-    if url=='':
-        return redirect(request.url)
+
 
     # Reading, Encoding and Saving it to the static Folder
     webpage = urlopen(req).read()
