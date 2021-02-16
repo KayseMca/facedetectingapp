@@ -16,10 +16,9 @@ def facecrop(filename):
                      "Surprise"]
         
     # file_data = image.read()
-    print("herer#########")
     # path = file_dir+'/static/uploads/'+filename
     path = 'static/uploads/'+str(filename)
-    print(path)
+    # print(path)
     # facedata = "haarcascade_frontalface_default.xml"
     facedata = file_dir+'/haarcascade_frontalface_default.xml'
     # cascade = cv2.CascadeClassifier(cv2.data.haarcascades +facedata)
