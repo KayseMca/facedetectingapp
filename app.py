@@ -135,7 +135,7 @@ def index():
             response[0]['mood_message'] = mood_message[0][pred]
             response[0]['activities'] = acctivities[0][pred]
             response[0]['mood'] = mood[0][pred]
-            print(response)
+            # print(response)
     return render_template('success.html', response=response, filename=filename)
 
 @app.route('/imageurl', methods=['POST'])
@@ -151,7 +151,6 @@ def imageurl():
 
     # Reading, Encoding and Saving it to the static Folder
     webpage = urlopen(req).read()
-    print(webpage)
     arr = np.asarray(bytearray(webpage), dtype=np.uint8)
     img = cv2.imdecode(arr, -1)
     path = "static/uploads/"
@@ -177,7 +176,7 @@ def imageurl():
     response[0]['mood_message'] = mood_message[0][pred]
     response[0]['activities'] = acctivities[0][pred]
     response[0]['mood'] = mood[0][pred]
-    print(response)
+    # print(response)
     return render_template('success.html', response=response, filename="urlimage.jpg")
 
 
