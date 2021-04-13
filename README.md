@@ -2,4 +2,4 @@
 website of the project
 
 
-detectingface.herokuapp.com/
+[detectingface.herokuapp](detectingface.herokuapp.com/)
