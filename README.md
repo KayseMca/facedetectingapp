@@ -2,4 +2,4 @@
 website of the project
 
 
-[detectingface.herokuapp](http://www.detectingface.herokuapp.com/)
+[detectingface.herokuapp](https://detectingface.herokuapp.com/)
