@@ -78,7 +78,7 @@ def facecrop(filename):
             json_file.close()
 
             loaded_model = tf.keras.models.model_from_json(load_json_model)
-            loaded_model.load_weights(file_dir+"\module\model_weights.h5")
+            loaded_model.load_weights(os.path.join(file_dir,"module/model_weights.h5"))
             print("loaded...")
             loading = False
 
