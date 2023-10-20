@@ -73,7 +73,7 @@ def facecrop(filename):
         with graph.as_default():
             print("loading..")
             loading = True
-            json_file = open(file_dir+"\module\model.json",'r')
+            json_file = open(os.path.join(file_dir,"module/model.json"),'r')
             load_json_model = json_file.read()
             json_file.close()
 
