@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1
 
 FROM python:3.7.9
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
 
 WORKDIR /flask/
 
